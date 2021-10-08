@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const fleetAPI = require("./src/api/fleet");
+
 let instance = {
     ip: '0.0.0.0',
     port: 3001
@@ -17,34 +19,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // enabling CORS for all requests
 app.use(cors());
 
-app.get('/', function(req,res) {
+app.get('/', function (req, res) {
     console.log('hello world');
 });
 
-
-app.use(`/api/v1/`, function(req, res, next) {
+app.use(`/api/v1/`, function (req, res, next) {
     res.setHeader('Content-Type', 'application/json');
     next();
 });
 
-// defining an endpoint to return all ads
-const fleet = { "jaguar": 200, "rover": 900, "hybrid":500};
-
-app.get('/api/v1/fleet/all', function(req,res) {
-    res.status(200);
-    res.send(fleet);
-});
-
-
-app.get('/api/v1/fleet/model/', function(req,res) {
-});
-
-
+app.use('/api/v1/fleet/', fleetAPI);
 
 // starting the server
-app.listen(instance.port, instance.ip, function() {
+app.listen(instance.port, instance.ip, function () {
     console.log(`Server listening on ${instance.ip}:${instance.port}`);
 });
-
 
 module.exports = app

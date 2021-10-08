@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -18,5 +19,8 @@
     "jest-cli": "^26.6.3",
     "request": "^2.88.2",
     "supertest": "^6.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
