@@ -42,8 +42,8 @@ app.get('/api/v1/fleet/model/', function(req,res) {
 
 
 // starting the server
-app.listen(3500, instance.ip, function() {
-    console.log(`Swagger listening on ${instance.ip}:${instance.port}`);
+app.listen(instance.port, instance.ip, function() {
+    console.log(`Server listening on ${instance.ip}:${instance.port}`);
 });
 
 
