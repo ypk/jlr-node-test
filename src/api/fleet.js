@@ -1,29 +1,38 @@
 const express = require("express");
+const readFileAsync = require('../utils/read-file-async');
+const fetchData = require("../utils/fetch-data");
 const router = express.Router();
-const dbFleet = require("../db/fleet.json");
 
-router.get("/all", function (req, res, next) {
+// defining an endpoint to return all ads
+const fleet = { "jaguar": 200, "rover": 900, "hybrid": 500 };
+
+router.get("/", function (req, res, next) {
     res.status(200);
-    res.send(dbFleet);
+    res.send(fleet);
 });
 
-router.get("/:model", function (req, res, next) {
-    const { model } = req.params;
-    let filteredModel = [];
-    Object.keys(dbFleet).forEach(fleetItem => {
-        const models = dbFleet[fleetItem].model;
-        if(models.hasOwnProperty(model)){
-            filteredModel.push({
-                [fleetItem]: {
-                    [model]: dbFleet[fleetItem].model[model]
-                }
-            })
-        }
-        return filteredModel;
-    });
+router.get("/all", async function (req, res, next) {
+    const data = await readFileAsync();
     res.status(200);
-    res.send(filteredModel);
+    res.send(data);
+});
+
+router.get("/models", async function (req, res, next) {
+    const data = await readFileAsync();
+    const allModels = [];
+    for (const [key, value] of Object.entries(data)) {
+        for (const [k, v] of Object.entries(value.model)) {
+            allModels.push(`${key} - ${k}${v ? ` - ${v}` : ""}`)
+        }
+    }
+    res.status(200);
+    res.send(allModels);
+});
+
+router.get("/models/:model", async function (req, res, next) {
+    await fetchData(req, res, next);
 });
 
 
 module.exports = router;
+

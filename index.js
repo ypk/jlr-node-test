@@ -28,7 +28,7 @@ app.use(`/api/v1/`, function (req, res, next) {
     next();
 });
 
-app.use('/api/v1/fleet/', fleetAPI);
+app.use('/api/v1/fleet', fleetAPI);
 
 // starting the server
 app.listen(instance.port, instance.ip, function () {
