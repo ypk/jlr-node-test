@@ -1,0 +1,31 @@
+{
+  "Jaguar": {
+    "available": "450",
+    "model": {
+      "X590": "I-Pace",
+      "X760": "XE",
+      "X260": "XF",
+      "X761": "F-Pace",
+      "X540": "E-Pace",
+      "X391": "XJ"
+    }
+  },
+  "Range Rover": {
+    "available": "500",
+    "model": {
+      "L560": "Velar",
+      "L551": "Evoque",
+      "L461": "Sport",
+      "L460": "",
+      "L392": ""
+    }
+  },
+  "Land Rover": {
+    "available": "300",
+    "model": {
+      "L663": "Defender",
+      "L462": "Discovery",
+      "L550": "Discovery Sport"
+    }
+  }
+}
